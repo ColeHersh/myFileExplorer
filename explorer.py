@@ -5,6 +5,7 @@ def main():
     print('Welcome to my file explorer terminal')
     commands = ['mkdir', 'exit', 'dir', 'pwd', 'commands', 'cd']
     currDir = 'C:/Users'
+    os.chdir(currDir)
     userInput = ''
     while(True):
         userInput = input()
@@ -29,6 +30,7 @@ def main():
             for entry in os.listdir(currDir):
                 if ' '.join(userInput[1:]) in entry:
                     currDir += '/' + ' '.join(userInput[1:])
+                    os.chdir(currDir)
             if temp == currDir:
                 print('no such directory exists')
         else:
