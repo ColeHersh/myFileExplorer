@@ -1,2 +1,2 @@
 # myFileExplorer
-a file explorer
+a file explorer terminal
