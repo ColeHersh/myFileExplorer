@@ -3,7 +3,7 @@ import sys
 
 def main():
     print('Welcome to my file explorer terminal')
-    commands = ['mkdir', 'exit', 'dir', 'pwd', 'commands', 'cd']
+    commands = ['mkdir', 'exit', 'dir', 'pwd', 'commands', 'cd', 'rm']
     currDir = 'C:/Users'
     os.chdir(currDir)
     userInput = ''
@@ -12,7 +12,7 @@ def main():
         userInput = userInput.split()
         userCommand = userInput[0]
         if userCommand == commands[0]:
-           os.mkdir(userInput[1])
+           os.mkdir(' '.join(userInput[1:]))
         elif userCommand == commands[1]:
             sys.exit(0)
         elif userCommand == commands[2]:
@@ -26,13 +26,23 @@ def main():
             for command in commands:
                 print(command)
         elif userCommand == commands[5]:
-            temp = currDir
+            if userInput[1] == 'prev':
+                currDir = currDir.split('/')
+                currDir = currDir[:len(currDir) - 1]
+                currDir = '/'.join(currDir)
+                os.chdir(currDir)
+            else:
+                temp = currDir
+                for entry in os.listdir(currDir):
+                    if ' '.join(userInput[1:]) in entry:
+                        currDir += '/' + ' '.join(userInput[1:])
+                        os.chdir(currDir)
+                if temp == currDir:
+                    print('no such directory exists')
+        elif userCommand == commands[6]:
             for entry in os.listdir(currDir):
                 if ' '.join(userInput[1:]) in entry:
-                    currDir += '/' + ' '.join(userInput[1:])
-                    os.chdir(currDir)
-            if temp == currDir:
-                print('no such directory exists')
+                    os.rmdir(' '.join(userInput[1:]))
         else:
             print("Error: unkown command - type 'commands' for a list of "
                   "commands")
