@@ -1,5 +1,7 @@
 import os
 import sys
+from os.path import exists
+
 
 def main():
     print('Welcome to my file explorer terminal')
@@ -34,7 +36,7 @@ def main():
             else:
                 temp = currDir
                 for entry in os.listdir(currDir):
-                    if ' '.join(userInput[1:]) in entry:
+                    if ' '.join(userInput[1:]) in entry and exists(' '.join(userInput[1:])):
                         currDir += '/' + ' '.join(userInput[1:])
                         os.chdir(currDir)
                 if temp == currDir:
