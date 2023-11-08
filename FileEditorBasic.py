@@ -15,6 +15,14 @@ frame.pack(pady=5)
 text_scroll = Scrollbar(frame)
 text_scroll.pack(side=RIGHT, fill=Y)
 
+# make menu
+menu = Menu(editor)
+editor.config(Menu=menu)
+
+# add file menu
+#TODO https://www.youtube.com/watch?v=UlQRXJWUNBA 5:40
+fileMenu = Menu(menu)
+
 # Makes text box
 text = Text(frame, width=97, height=25, font=('Times New Roman', 20),
             selectbackground='blue', selectforeground='black', undo=True,
