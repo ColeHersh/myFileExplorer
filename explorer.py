@@ -46,7 +46,8 @@ def printDirectory(currDir):
     dir_entries = os.scandir(currDir)
     print('In Directory:')
     for entry in dir_entries:
-        print(entry)
+        entry = str(entry)
+        print(entry[11:].strip("'>"))
 
 
 # pwd made a function to be used in multiple locations
